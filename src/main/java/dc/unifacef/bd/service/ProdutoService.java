@@ -14,11 +14,13 @@ public class ProdutoService {
 
     // Toda vez ele vai inicializar assim
     public ProdutoService(ProdutoRepository repo){
+
         this.repo = repo;
     }
 
     // Listar os produtos da tabela produtos
     public List<Produto> listar(){
+
         return repo.findAll();
     }
 
@@ -34,5 +36,22 @@ public class ProdutoService {
             return true; // remove
         }
         return false; // Não remove
+    }
+
+
+    // Atualiza um produto por id e o produto alterado
+    public Produto atualiza(Long id, Produto alterado){
+        // Verifica se o produto exsite no BD
+        if(repo.existsById(id)){
+            alterado.setId(id);
+
+            // ISSO CAI NA PROVA
+            repo.save(alterado);    // Como alterado tem id = Ele faz UPDATE
+        }
+        return null; // Quando o produto não existe
+    }
+    // Metodo pra inserir o produto no banco (criar)
+    public Produto salva(Produto produto){
+        return repo.save(produto);  // Como o produto não tem ID, ele faz INSERT (somente coloca la)
     }
 }
