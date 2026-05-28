@@ -12,7 +12,7 @@ public class ProdutoService {
     // A injeção de dependência será pelo construtor
     private ProdutoRepository repo;
 
-    // Toda vez ele vai inicializar assim
+    // Toda vez ele vai inicializar assim:
     public ProdutoService(ProdutoRepository repo){
 
         this.repo = repo;
